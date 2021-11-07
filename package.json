@@ -1,0 +1,17 @@
+{
+  "description": "Project 1 - Information Recovery",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev src/index.ts",
+    "compile": "tsc"
+  },
+  "dependencies": {
+    "puppeteer": "^11.0.0",
+    "tsc": "^2.0.3",
+    "typescript": "^4.4.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mcdag/if692_2021_1"
+  }
+}
