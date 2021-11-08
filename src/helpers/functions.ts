@@ -12,10 +12,13 @@ export async function getLinks (page: puppeteer.Page) {
     elementHandles.map(handle => handle.getProperty('href'))
   );
   const links = await Promise.all(
-    propertyJsHandles.map(handle => handle.jsonValue().toString())
+    propertyJsHandles.map(handle => handle.jsonValue())
   );
 
-  return links;
+  let urls = links.map(elem => elem.toString());
+  urls = urls.filter(elem => elem !== '');
+
+  return urls;
 }
 
 export function findEarphone (text: string): Boolean {
