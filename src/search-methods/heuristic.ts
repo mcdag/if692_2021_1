@@ -1,4 +1,4 @@
-import PriorityQueue from "js-priority-queue";
+import PriorityQueue from "ts-priority-queue";
 import * as Puppeteer from "puppeteer";
 import { Data } from "../controller/search-methods";
 import { EarphoneDTO } from "../dtos/earphone.dto";
