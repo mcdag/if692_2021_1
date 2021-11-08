@@ -6,6 +6,36 @@ export async function time(time: number) {
   });
 }
 
+export async function getLinks (page: puppeteer.Page) {
+  const elementHandles = await page.$$('a');
+  const propertyJsHandles = await Promise.all(
+    elementHandles.map(handle => handle.getProperty('href'))
+  );
+  const links = await Promise.all(
+    propertyJsHandles.map(handle => handle.jsonValue().toString())
+  );
+
+  return links;
+}
+
+export function findEarphone (text: string): Boolean {
+  if(text.includes('earphone') || 
+      text.includes('Earphone') || 
+      text.includes('fone') || 
+      text.includes('Fone') || 
+      text.includes('phone') || 
+      text.includes('Phone') || 
+      text.includes('earbud') || 
+      text.includes('Earbud') || 
+      text.includes('earpod') || 
+      text.includes('Earpod') || 
+      text.includes('headphone') || 
+      text.includes('Headphone')) {
+     return true;
+  }
+  false;
+}
+
 export async function getTextByXPath(
   page: puppeteer.Page,
   xpath: string
@@ -16,32 +46,5 @@ export async function getTextByXPath(
     throw `XPath ${path} not found`;
   }
   const text = String(await property.jsonValue());
-  return text;
-}
-
-export async function getLinkByQuerySelector(
-  page: puppeteer.Page,
-  selector: string
-) {
-  const link = await page.$eval(selector, el => el.getAttribute('href'));
-  return link;
-}
-
-export async function getClassNameByQuerySelector(
-  page: puppeteer.Page,
-  selector: string
-) {
-  const className = await page.$eval(selector, el => el.className);
-  return className;
-}
-
-export async function getTextByQuerySelector(
-  page: puppeteer.Page,
-  selector: string
-) {
-  let text = await page.$eval(selector, el => el.textContent);
-  if (text === null) {
-    text = '';
-  }
   return text;
 }
