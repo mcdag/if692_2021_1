@@ -26,8 +26,11 @@ export async function bfs (page: Puppeteer.Page, earphones: EarphoneDTO[], pages
     }
     const pageLinks = await getLinks(page);
     
-    queue = queue.concat(pageLinks);
-
+    for(let i=0; i<pageLinks.length; i++){
+      if(!queue.includes[pageLinks[i]]){
+        queue.push(pageLinks[i]);
+      }
+    }
     pages = pages + 1;
   }
   return earphones;
