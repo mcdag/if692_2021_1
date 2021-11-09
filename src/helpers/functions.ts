@@ -26,7 +26,7 @@ export function findEarphone (text: string): Boolean {
       text.includes('Earphone') || 
       text.includes('fone') || 
       text.includes('Fone') || 
-      text.includes('phone') || 
+      (text.includes('phone') && !text.includes('martphone')) || 
       text.includes('Phone') || 
       text.includes('earbud') || 
       text.includes('Earbud') || 
@@ -49,5 +49,16 @@ export async function getTextByXPath(
     throw `XPath ${path} not found`;
   }
   const text = String(await property.jsonValue());
+  return text;
+}
+
+export async function getTextByQuerySelector(
+  page: puppeteer.Page,
+  selector: string
+) {
+  let text = await page.$eval(selector, el => el.textContent);
+  if (text === null) {
+    text = '';
+  }
   return text;
 }
