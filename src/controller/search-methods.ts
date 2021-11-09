@@ -19,7 +19,13 @@ export function getDataInformation (site: string): Data {
       priceXPath = xpath.PRICE_AMAZON;
       siteUrl = link.AMAZON;
       break;
-  
+    case 'americanas':
+      nameXpath = xpath.NAME_AMAZON;
+      typeXpath = xpath.TYPE_AMAZON;
+      brandXpath = xpath.BRAND_AMAZON;
+      priceXPath = xpath.PRICE_AMAZON;
+      siteUrl = link.AMAZON;
+      break;
     case 'extra':
       nameXpath = xpath.NAME_AMAZON;
       typeXpath = xpath.TYPE_AMAZON;
